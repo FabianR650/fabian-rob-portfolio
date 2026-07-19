@@ -1,0 +1,131 @@
+/* Background wrapper */
+.compass-bg {
+  background: #e0d386;
+  padding: 0.25rem 1.25rem; /* reduced vertical height */
+  border-radius: 20px;
+  display: inline-flex;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.compass-bg:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Wrapper */
+.compass-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsive Compass */
+.compass {
+  position: relative;
+  width: clamp(180px, 55vw, 300px);
+  height: clamp(180px, 55vw, 300px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f0f0f0 0%, #b0b4b8 40%, #5a5f66 100%);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35), inset 0 0 12px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ring */
+.compass-ring {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Tick marks */
+.tick {
+  position: absolute;
+  width: clamp(2px, 0.8vw, 3px);
+  height: clamp(10px, 6vw, 14px);
+  background: rgba(255, 255, 255, 0.8);
+  top: clamp(2px, 1vw, 3px);
+  left: 50%;
+  transform-origin: center calc(clamp(180px, 55vw, 300px) / 2);
+  border-radius: 2px;
+}
+
+/* Needle */
+.compass-needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Triangular ends */
+.needle-tip {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: clamp(10px, 4vw, 18px) solid transparent;
+  border-right: clamp(10px, 4vw, 18px) solid transparent;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.needle-tip.top {
+  border-bottom: clamp(35px, 12vw, 55px) solid #e53935;
+  top: calc(-1 * clamp(35px, 12vw, 55px));
+}
+
+.needle-tip.bottom {
+  border-top: clamp(35px, 12vw, 55px) solid #263238;
+  bottom: calc(-1 * clamp(35px, 12vw, 55px));
+}
+
+/* Points */
+.compass-point {
+  position: absolute;
+  width: clamp(28px, 10vw, 40px);
+  height: clamp(28px, 10vw, 40px);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f5f7fa;
+  font-size: clamp(0.6rem, 2.5vw, 0.85rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.compass-point:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(1.05);
+}
+
+/* Auto rotate */
+.compass-needle.auto-rotate {
+  animation: compass-spin 6s linear infinite;
+}
+
+@keyframes compass-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Point positions (responsive offsets) */
+.compass-point[data-angle="0"]   { top: clamp(6px, 3vw, 10px); left: 50%; transform: translateX(-50%); }
+.compass-point[data-angle="45"]  { top: clamp(25px, 8vw, 40px); right: clamp(25px, 8vw, 40px); }
+.compass-point[data-angle="90"]  { top: 50%; right: clamp(6px, 3vw, 10px); transform: translateY(-50%); }
+.compass-point[data-angle="135"] { bottom: clamp(25px, 8vw, 40px); right: clamp(25px, 8vw, 40px); }
+.compass-point[data-angle="180"] { bottom: clamp(6px, 3vw, 10px); left: 50%; transform: translateX(-50%); }
+.compass-point[data-angle="225"] { bottom: clamp(25px, 8vw, 40px); left: clamp(25px, 8vw, 40px); }
+.compass-point[data-angle="270"] { top: 50%; left: clamp(6px, 3vw, 10px); transform: translateY(-50%); }
+.compass-point[data-angle="315"] { top: clamp(25px, 8vw, 40px); left: clamp(25px, 8vw, 40px); }

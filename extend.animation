@@ -1,0 +1,4 @@
+orbit: "orbit 3s linear infinite",
+planetPulse: "planetPulse 2s ease-in-out infinite",
+laptopOpen: "laptopOpen 0.6s ease-out forwards",
+laptopClose: "laptopClose 0.6s ease-out forwards",

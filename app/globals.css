@@ -2,14 +2,197 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global theme variables */
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
+/* Tailwind base overrides */
+@layer base {
+  body {
+    /* Light mode full-body color */
+    @apply bg-[rgb(220,220,253)] transition-colors;
+    background: rgb(220,220,253);
+  }
+
+}
+
+/* Custom 3D utilities */
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover {
+  color: rgb(74, 93, 138); /* slate-900 */
+}
+
+.dark .nav-link:hover {
+  color: white;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95) }
+  to { transform: scale(1) }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.4s ease-out;
+}
+
+@layer utilities {
+  @keyframes scale-in {
+    from {
+      opacity: 1;
+      transform: scale3d(1.5, 1.5, 1.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale3d(var(--primary-color-rgb));
+    }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+}
+
+@layer utilities {
+  @keyframes scale-in-fade {
+    from {
+      opacity: 0;
+      transform: scale3d(1.5, 1.5, 1.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale3d(var(--primary-color-rgb));
+    }
+  }
+
+  .animate-scale-in-fade {
+    animation: scale-in-fade 0.8s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  @keyframes scale-out-fade {
+    from {
+      opacity: 0;
+      transform: scale3d(0.75, 0.75, 0.75);
+    }
+    to {
+      opacity: 1;
+      transform: scale3d(var(--primary-color-rgb));
+    }
+  }
+
+  .animate-scale-out-fade {
+    animation: scale-out-fade 0.8s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  @keyframes width-in-fade {
+    from {
+      opacity: 0;
+      width: 1px;
+    }
+    to {
+      opacity: 1;
+      width: 100px;
+    }
+  }
+
+  .animate-width-in-fade {
+    animation: width-in-fade 0.8s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  @keyframes shadow-pulse {
+    0% {
+      box-shadow: 0 0 0 0px rgba(120, 169, 56, 0.2);
+    }
+    100% {
+      box-shadow: 0 0 0 20px rgba(120, 169, 56, 0);
+    }
+  }
+
+  .animate-shadow-pulse {
+    animation: shadow-pulse 1s infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes bounce-custom {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+
+  .animate-bounce-custom {
+    animation: bounce-custom 1.4s ease-out;
+  }
+}
+
+@layer utilities {
+  .animate-active {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

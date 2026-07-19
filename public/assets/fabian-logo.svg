@@ -1,0 +1,31 @@
+<svg
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background (black) -->
+  <rect width="512" height="512" fill="#000000" />
+
+  <!-- Stylized F (white) -->
+  <path
+    d="M180 120 H360 V180 H240 V230 H330 V290 H240 V392 H180 Z"
+    fill="#FFFFFF"
+  />
+
+  <!-- Hat handle (black) -->
+  <rect
+    x="210"
+    y="80"
+    width="18"
+    height="70"
+    transform="rotate(-25 219 115)"
+    fill="#000000"
+  />
+
+  <!-- Hat cap (red) -->
+  <path
+    d="M200 60 L250 50 L260 80 L210 90 Z"
+    fill="#FF3B3B"
+  />
+</svg>
